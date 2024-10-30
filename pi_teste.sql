@@ -163,4 +163,5 @@ ORDER BY
 ----------------------------
 select * from materia
 select * from horario
+select * from prof
 
