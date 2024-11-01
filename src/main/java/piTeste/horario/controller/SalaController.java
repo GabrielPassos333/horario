@@ -1,6 +1,7 @@
 package piTeste.horario.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import piTeste.horario.entity.Sala;
@@ -28,6 +29,7 @@ public class SalaController {
     }
 
     // Adicionar uma nova sala
+    //@responseStatus(HttpStatus.CREATED)
     @PostMapping
     public Sala adicionarSala(@RequestBody Sala sala) {
         return salaService.adicionarSala(sala);
@@ -43,5 +45,13 @@ public class SalaController {
     @DeleteMapping("/{id}")
     public void deletarSala(@PathVariable Integer id) {
         salaService.deletarSala(id);
+    }
+
+
+    // Endpoint para buscar todas as salas com lugares > 100
+    @GetMapping("/lugares/maior-que-100")
+    public ResponseEntity<List<Sala>> getSalasComMaisDe100Lugares() {
+        List<Sala> salas = salaService.buscarSalasComMaisDe100Lugares();
+        return ResponseEntity.ok(salas);
     }
 }

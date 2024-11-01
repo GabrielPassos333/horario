@@ -45,4 +45,8 @@ public class SalaService {
         Sala salaExistente = obterSalaPorId(id);
         salaRepository.delete(salaExistente);
     }
+
+    public List<Sala> buscarSalasComMaisDe100Lugares() {
+        return salaRepository.findByLugaresGreaterThan(100);
+    }
 }
